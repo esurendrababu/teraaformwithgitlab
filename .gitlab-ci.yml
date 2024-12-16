@@ -10,6 +10,7 @@ stages:
   - validate
   - plan
   - apply
+  - destroy
 
 before_script:
   - terraform init
@@ -35,3 +36,9 @@ apply:
     - plan
   only:
     - main
+
+destroy:
+  stage: destroy
+  script:
+    - terraform destroy -auto-approve
+  when: manual
